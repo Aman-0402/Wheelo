@@ -38,7 +38,7 @@ export default function Vehicles() {
 
   const { data: categories } = useQuery({
     queryKey: ['categories'],
-    queryFn: () => getCategories().then((r) => r.data),
+    queryFn: () => getCategories().then((r) => r.data.results ?? r.data),
   })
 
   const { data, isLoading } = useQuery({
