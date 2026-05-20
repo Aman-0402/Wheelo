@@ -71,7 +71,7 @@ export default function Gallery() {
 
   const { data: images, isLoading } = useQuery({
     queryKey: ['gallery'],
-    queryFn: () => getGallery().then((r) => r.data),
+    queryFn: () => getGallery().then((r) => r.data.results ?? r.data),
   })
 
   return (
