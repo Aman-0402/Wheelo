@@ -48,7 +48,7 @@ export default function FaqPreview() {
   const [openId, setOpenId] = useState(null)
   const { data: faqs } = useQuery({
     queryKey: ['faqs'],
-    queryFn: () => getFaqs().then((r) => r.data),
+    queryFn: () => getFaqs().then((r) => r.data.results ?? r.data),
   })
 
   const preview = faqs?.slice(0, 5)

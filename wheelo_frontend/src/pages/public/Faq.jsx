@@ -54,7 +54,7 @@ export default function Faq() {
 
   const { data: faqs, isLoading } = useQuery({
     queryKey: ['faqs'],
-    queryFn: () => getFaqs().then((r) => r.data),
+    queryFn: () => getFaqs().then((r) => r.data.results ?? r.data),
   })
 
   return (

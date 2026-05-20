@@ -21,7 +21,7 @@ function StarRating({ rating }) {
 export default function TestimonialsSection() {
   const { data: testimonials } = useQuery({
     queryKey: ['testimonials'],
-    queryFn: () => getTestimonials().then((r) => r.data),
+    queryFn: () => getTestimonials().then((r) => r.data.results ?? r.data),
   })
 
   if (!testimonials?.length) return null

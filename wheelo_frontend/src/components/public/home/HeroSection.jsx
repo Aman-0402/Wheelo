@@ -19,7 +19,7 @@ const FALLBACK = [
 export default function HeroSection() {
   const { data: banners } = useQuery({
     queryKey: ['banners'],
-    queryFn: () => getBanners().then((r) => r.data),
+    queryFn: () => getBanners().then((r) => r.data.results ?? r.data),
   })
 
   const slides = banners?.length ? banners : FALLBACK

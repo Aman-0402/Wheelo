@@ -7,7 +7,7 @@ import SectionHeading from '@/components/public/ui/SectionHeading'
 export default function CategoriesSection() {
   const { data: categories, isLoading } = useQuery({
     queryKey: ['categories'],
-    queryFn: () => getCategories().then((r) => r.data),
+    queryFn: () => getCategories().then((r) => r.data.results ?? r.data),
   })
 
   return (
