@@ -20,20 +20,27 @@ class BannerWriteSerializer(serializers.ModelSerializer):
 
 
 class TestimonialSerializer(serializers.ModelSerializer):
+    author_name = serializers.CharField(source='name')
+    location = serializers.CharField(source='role', default='')
+    body = serializers.CharField(source='content')
     image_url = serializers.SerializerMethodField()
 
     class Meta:
         model = Testimonial
-        fields = ['id', 'name', 'role', 'content', 'rating', 'image_url', 'is_active', 'order']
+        fields = ['id', 'author_name', 'location', 'body', 'rating', 'image_url', 'is_active', 'order']
 
     def get_image_url(self, obj):
         return obj.image_url
 
 
 class TestimonialWriteSerializer(serializers.ModelSerializer):
+    author_name = serializers.CharField(source='name')
+    location = serializers.CharField(source='role', required=False, allow_blank=True)
+    body = serializers.CharField(source='content')
+
     class Meta:
         model = Testimonial
-        fields = ['id', 'name', 'role', 'content', 'rating', 'image', 'is_active', 'order']
+        fields = ['id', 'author_name', 'location', 'body', 'rating', 'image', 'is_active', 'order']
 
 
 class FAQSerializer(serializers.ModelSerializer):

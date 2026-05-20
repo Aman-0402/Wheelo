@@ -29,8 +29,12 @@ export default function VehicleCard({ vehicle, index = 0 }) {
               loading="lazy"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center text-[#2A2A2A] text-4xl">
-              🚗
+            <div
+              className="w-full h-full flex flex-col items-center justify-center gap-2"
+              style={{ background: 'linear-gradient(135deg, #1A1A1A 0%, #111 100%)' }}
+            >
+              <span className="text-5xl opacity-30">🚗</span>
+              <span className="text-xs font-medium" style={{ color: '#3A3A3A' }}>No image</span>
             </div>
           )}
 

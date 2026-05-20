@@ -24,6 +24,8 @@ export default function FeaturedVehicles() {
     queryFn: () => getVehicles({ is_featured: true, limit: 6 }).then((r) => r.data.results ?? r.data),
   })
 
+  if (!isLoading && !data?.length) return null
+
   return (
     <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <div className="mb-12">

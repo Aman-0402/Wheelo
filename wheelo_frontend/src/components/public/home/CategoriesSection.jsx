@@ -10,6 +10,8 @@ export default function CategoriesSection() {
     queryFn: () => getCategories().then((r) => r.data.results ?? r.data),
   })
 
+  if (!isLoading && !categories?.length) return null
+
   return (
     <section className="py-16 md:py-20 px-4 sm:px-6 lg:px-8" style={{ background: '#111111' }}>
       <div className="max-w-7xl mx-auto">

@@ -83,9 +83,17 @@ class SiteSettingsView(APIView):
         return Response(data)
 
     def put(self, request):
-        serializer = SiteSettingBulkSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.update_settings()
+        data = request.data
+        # Accept both [{key, value}] array and {key: value} dict
+        if isinstance(data, list):
+            for item in data:
+                if 'key' in item:
+                    SiteSetting.objects.update_or_create(
+                        key=item['key'], defaults={'value': item.get('value', '')}
+                    )
+        elif isinstance(data, dict):
+            for key, value in data.items():
+                SiteSetting.objects.update_or_create(key=key, defaults={'value': value or ''})
         return Response({'detail': 'Settings updated.'})
 
 
